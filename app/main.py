@@ -1,11 +1,12 @@
 class Animal:
     alive = []
 
-    def __init__(self
-                 , name: str
-                 , health: int = 100
-                 , hidden: bool = False
-                 ) -> None:
+    def __init__(
+            self,
+            name: str,
+            health: int = 100,
+            hidden: bool = False
+    ) -> None:
         self.name = name
         self.health = health
         self.hidden = hidden
@@ -13,13 +14,11 @@ class Animal:
 
     def __repr__(self) -> str:
         list_animal = []
-        for i in range(len(Animal.alive)):
-            list_animal.append(f"{{Name: {Animal.alive[i].name}"
-                               f", Health: {Animal.alive[i].health}"
-                               f", Hidden: {Animal.alive[i].hidden}}}")
-        Animal.alive.clear()
-        Animal.alive = ", ".join(list_animal)
-        return Animal.alive
+        list_animal.append(f"{{"
+                           f"Name: {self.name}, "
+                           f"Health: {self.health}, "
+                           f"Hidden: {self.hidden}}}")
+        return ", ".join(list_animal)
 
 
 class Herbivore(Animal):
@@ -32,8 +31,8 @@ class Carnivore(Animal):
 
     def bite(self, other: Herbivore) -> None:
         if (
-                isinstance(self, Carnivore) is True
-                and isinstance(other, Carnivore) is False
+                isinstance(self, Carnivore)
+                and isinstance(other, Herbivore)
                 and other.hidden is False
         ):
             other.health -= 50
